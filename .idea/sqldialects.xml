@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/e916f4f6-d9bd-4aa7-89c0-7466bc936ddc/console.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/inodinln/example/dao/DebitCardDao.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/inodinln/example/dao/LoanDao.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ru/inodinln/example/dao/UserDao.java" dialect="GenericSQL" />
+  </component>
+</project>

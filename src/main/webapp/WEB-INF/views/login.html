@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<br>
+<strong> Login</strong>
+<br>
+<form th:method="POST" th:action="@{/doLogin}" th:object="${userLoginDTO}">
+    <div>
+        <br>
+        <br>
+        <div th:if="${userLogValidObj != null && userLogValidObj.eMailErrMsg != null}" th:text="${userLogValidObj.eMailErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="mail">E-Mail</label>
+        <input id="mail" th:field="*{eMail}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <div th:if="${userLogValidObj != null && userLogValidObj.pswrdErrMsg != null}" th:text="${userLogValidObj.pswrdErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" th:field="*{pswrd}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Login"/>
+    </div>
+</form>
+<br>
+<a href="/register">Register</a>
+</body>
+</html>

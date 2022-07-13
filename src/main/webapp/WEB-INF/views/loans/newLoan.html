@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>newLoan</title>
+</head>
+<body>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<form th:method="POST" th:action="@{/addLoan}" th:object="${newLoan}">
+    <div>
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanTypeErrMsg != null}" th:text="${loanValidObj.loanTypeErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <br>
+        <label for="loanType">Type</label>
+        <input id="loanType" th:field="*{loanType}" type="text"/>
+        <!--<div style="color:red" th:if="${#fields.hasErrors('loanType')}" th:errors="*{loanType}" > Error</div>-->
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanAmountErrMsg != null}" th:text="${loanValidObj.loanAmountErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <br>
+        <label for="amount">Amount</label>
+        <input step="0.01" id="amount" th:field="*{amount}" type="number"/>
+        <!-- step="any" <div style="color:red" th:errors="*{amount}" th:if="${#fields.hasErrors('amount')}"> Error</div>-->
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanTermErrMsg != null}" th:text="${loanValidObj.loanTermErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <br>
+        <label for="term">Term</label>
+        <input step="any" id="term" th:field="*{term}" type="number"/>
+        <!--<div style="color:red" th:errors="*{term}" th:if="${#fields.hasErrors('term')}"> Error</div>-->
+        <br>
+        <br>
+        <br>
+        <!--<label for="rate">Interest Rate</label>
+        <input id="rate" th:field="*{rate}" type="text"/>
+        <div style="color:red" th:errors="*{rate}" th:if="${#fields.hasErrors('rate')}"> Error</div>-->
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Add new Loan"/>
+    </div>
+
+</form>
+</body>
+</html>

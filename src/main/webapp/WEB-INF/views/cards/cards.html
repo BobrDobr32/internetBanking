@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+</head>
+<body>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<br>
+<br>
+<strong> Cards</strong>
+<br>
+<br>
+
+<table border="1" bordercolor="grey">
+    <caption>Debit cards list</caption>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Card Number</th>
+        <th>Expiration date</th>
+        <th>CVV-code</th>
+        <th>Current balance</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody th:each="card : ${cards}">
+    <tr>
+        <td th:text="${cards.indexOf(card) +1}"></td>
+        <td th:text="${card.cardNumber}"></td>
+        <td th:text="${card.expDate}"></td>
+        <td th:text="${card.cvv}"></td>
+        <td th:text="${card.currBalance}"></td>
+        <td> <a th:href="@{/editCardPage/{cardNumber}(cardNumber=${card.cardNumber})}">Edit</a></td>
+        <td> <form th:method="DELETE" th:action="@{/deleteCard/{cardNumber} (cardNumber=${card.cardNumber})}">
+            <input type="submit" value="Delete"/>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<a href="/newCardPage">Create new Card</a>
+<br>
+<br>
+<a href="/">Back</a>
+<br>
+<br>
+<a href="/logOut">Logout</a>
+</body>
+</html>

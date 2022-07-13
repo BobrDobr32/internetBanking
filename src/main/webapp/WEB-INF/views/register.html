@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+</head>
+<body>
+<br>
+<strong> Register</strong>
+<br>
+<form th:method="POST" th:action="@{/doRegister}" th:object="${userRegDTO}">
+    <div>
+        <br>
+        <br>
+        <div th:if="${userRegValidObj != null && userRegValidObj.firstNameErrMsg != null}" th:text="${userRegValidObj.firstNameErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="firstName">First name</label>
+        <input id="firstName" th:field="*{firstName}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <div th:if="${userRegValidObj != null && userRegValidObj.lastNameErrMsg != null}" th:text="${userRegValidObj.lastNameErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="lastName">Last name</label>
+        <input id="lastName" th:field="*{lastName}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <div th:if="${userRegValidObj != null && userRegValidObj.eMailErrMsg != null}" th:text="${userRegValidObj.eMailErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="eMail">E-Mail</label>
+        <input id="eMail" th:field="*{eMail}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <div th:if="${userRegValidObj != null && userRegValidObj.pswrdErrMsg != null}" th:text="${userRegValidObj.pswrdErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="password">Password</label>
+        <input id="password" th:field="*{pswrd}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Register"/>
+    </div>
+</form>
+<br>
+<a href="/">Login page</a>
+</body>
+</html>

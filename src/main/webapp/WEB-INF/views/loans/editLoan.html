@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Loan</title>
+</head>
+<body>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<br>
+<strong> Edit loan</strong>
+<br>
+<br>
+
+<table border="1" bordercolor="grey">
+    <caption>Loans list</caption>
+    <thead>
+    <tr>
+        <th>Loan number</th>
+        <th>Type</th>
+        <th>Registration date</th>
+        <th>Amount</th>
+        <th>Interest rate</th>
+        <th>Term</th>
+        <th>Monthly payment</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${loan.loanNumber}"></td>
+        <td th:text="${loan.loanType}"></td>
+        <td th:text="${loan.regDate}"></td>
+        <td th:text="${loan.amount}"></td>
+        <td th:text="${loan.rate}"></td>
+        <td th:text="${loan.term}"></td>
+        <td th:text="${loan.payment}"></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<form th:method="PATCH" th:action="@{/updateLoan/{loanNumber} (loanNumber=${loan.loanNumber})}" th:object="${loan}">
+    <div>
+        <br>
+
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanTypeErrMsg != null}" th:text="${loanValidObj.loanTypeErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="type">Loan type</label>
+        <input id="type" th:field="*{loanType}" type="text"/>
+        <br>
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanAmountErrMsg != null}" th:text="${loanValidObj.loanAmountErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="amount">Loan amount</label>
+        <input id="amount" th:field="*{amount}" type="text"/>
+        <br>
+        <br>
+        <div th:if="${loanValidObj != null && loanValidObj.loanTermErrMsg != null}" th:text="${loanValidObj.loanTermErrMsg}" th:style="'color: red;'"></div>
+        <br>
+        <label for="term">Loan term</label>
+        <input id="term" th:field="*{term}" type="text"/>
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Update Loan"/>
+    </div>
+</form>
+<br>
+<br>
+<a href="/loansPage">Back</a>
+<br>
+<br>
+<a href="/logOut">Logout</a>
+</body>
+</html>

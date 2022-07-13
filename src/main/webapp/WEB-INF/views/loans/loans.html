@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans</title>
+</head>
+<body>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<br>
+<strong> Loans list</strong>
+<br>
+<br>
+<table border="1" bordercolor="grey">
+    <caption>Loans list</caption>
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Loan number</th>
+        <th>Type</th>
+        <th>Registration date</th>
+        <th>Amount</th>
+        <th>Interest rate</th>
+        <th>Term</th>
+        <th>Monthly payment</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody th:each="loan : ${loans}">
+    <tr>
+        <td th:text="${loans.indexOf(loan) +1}"></td>
+        <td th:text="${loan.loanNumber}"></td>
+        <td th:text="${loan.loanType}"></td>
+        <td th:text="${loan.regDate}"></td>
+        <td th:text="${loan.amount}"></td>
+        <td th:text="${loan.rate}"></td>
+        <td th:text="${loan.term}"></td>
+        <td th:text="${loan.payment}"></td>
+        <td> <a th:href="@{/editLoanPage/{loanNumber}(loanNumber=${loan.loanNumber})}">Edit</a></td>
+        <td> <form th:method="DELETE" th:action="@{/deleteLoan/{loanNumber} (loanNumber=${loan.loanNumber})}">
+            <input type="submit" value="Delete"/>
+        </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<br>
+<a href="/newLoanPage">Create new Loan</a>
+<br>
+<br>
+<a href="/">Back</a>
+<br>
+<br>
+<a href="/logOut">Logout</a>
+</body>
+</html>

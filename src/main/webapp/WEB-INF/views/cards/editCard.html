@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EditCard</title>
+</head>
+<body>
+<br>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<br>
+<br>
+<strong> Edit card</strong>
+<br>
+<br>
+
+<table border="1" bordercolor="grey">
+    <caption>Debit cards list</caption>
+    <thead>
+    <tr>
+         <th>Card Number</th>
+         <th>Expiration date</th>
+         <th>CVV-code</th>
+         <th>Current balance</th>
+
+     </tr>
+     </thead>
+     <tbody>
+    <tr>
+        <td th:text="${card.cardNumber}"></td>
+         <td th:text="${card.expDate}"></td>
+         <td th:text="${card.cvv}"></td>
+         <td th:text="${card.currBalance}"></td>
+
+     </tr>
+     </tbody>
+ </table>
+ <br>
+ <br>
+
+ <div th:if="${dbtCrdValidObj != null && dbtCrdValidObj.currBalanceError != null}" th:text="${dbtCrdValidObj.currBalanceError}" th:style="'color: red;'"></div>
+
+ <form th:method="PATCH" th:action="@{/updateCard/{cardNumber} (cardNumber=${card.cardNumber})}" th:object="${card}">
+     <div>
+         <br>
+         <label for="currBalance">Current Balance</label>
+         <input step="any" id="currBalance" th:field="*{currBalance}" type="number"/>
+
+         <br>
+         <br>
+         <br>
+         <input type="submit" value="Update debit Card"/>
+     </div>
+ </form>
+<br>
+<br>
+<a href="/logOut">Logout</a>
+ </body>
+ </html>

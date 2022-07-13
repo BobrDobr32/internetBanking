@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>newCard</title>
+</head>
+<body>
+<br>
+<br>
+Current user: <div th:text="${username}" th:style="'color: blue;'"></div>
+<br>
+<br>
+<div th:if="${dbtCrdValidObj != null && dbtCrdValidObj.currBalanceError != null}" th:text="${dbtCrdValidObj.currBalanceError}" th:style="'color: red;'"></div>
+<br>
+<form th:method="POST" th:action="@{/addCard}" th:object="${dbtCardDTO}">
+    <div>
+        <label for="currBalance">Current Balance</label>
+        <input id="currBalance" th:field="*{currBalance}" type="number"/>
+
+        <div style="color:red" th:errors="*{currBalance}" th:if="${#fields.hasErrors('currBalance')}"> Error</div> <!-- Как fields привязывается к конкретному объекту?-->
+        <br>
+        <br>
+        <br>
+        <input type="submit" value="Add new debit Card"/>
+    </div>
+
+</form>
+<br>
+<br>
+<a href="/cardsPage">Back</a>
+<br>
+<br>
+<a href="/logOut">Logout</a>
+</form>
+</body>
+</html>
