@@ -47,7 +47,7 @@ public class UserController {
     public String doLogin (@ModelAttribute("userLoginDTO") UserLoginDTO userLogDTO, Model model) {
 
         if (currentUser != null)
-            return "index";
+            return "redirect:/index";
 
         UserLogValidObj userLogValidObj = userLogValidService.userLogValidation(userLogDTO);
 
@@ -56,7 +56,7 @@ public class UserController {
             if (logUser != null){
                 mainController.setCurrentUser(logUser);
                 currentUser = logUser;
-                return "index";}
+                return "redirect:/index";}
             else return "login";
         }
         model.addAttribute("userLogValidObj", userLogValidObj);

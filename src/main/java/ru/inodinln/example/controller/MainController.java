@@ -18,6 +18,7 @@ import ru.inodinln.example.validation.service.LoanValidService;
 public class MainController {
 
    private User currentUser;
+   private String username;
    private final DbtCrdValidService dbtCrdValidSrv;
    private final DbtCrdService dbtCrdService;
    private final LoanService loanService;
@@ -38,7 +39,7 @@ public class MainController {
         if (currentUser == null)
             return "redirect:/";
 
-        String username = currentUser.getFirstName() +" " + currentUser.getLastName();
+        username = currentUser.getFirstName() +" " + currentUser.getLastName();
         model.addAttribute("username", username);
         return "index";
     }
@@ -51,6 +52,7 @@ public class MainController {
            return "redirect:/";
 
        model.addAttribute("cards", dbtCrdService.getCardsToView(currentUser.getId()));
+       model.addAttribute("username", username);
         return "cards/cards";
     }
     @GetMapping("/newCardPage")
@@ -60,6 +62,7 @@ public class MainController {
             return "redirect:/";
 
        model.addAttribute("dbtCardDTO", new DebitCardDTO());
+        model.addAttribute("username", username);
         return "cards/newCard";
     }
 
@@ -76,7 +79,7 @@ public class MainController {
             return "cards/cards";
         }
         model.addAttribute("dbtCrdValidObj", dbtCrdValidObj);
-        return "cards/newCard";
+        return "redirect:/cardsPage";
     }
 
     @GetMapping("/editCardPage/{cardNumber}")
@@ -86,6 +89,7 @@ public class MainController {
             return "redirect:/";
 
         model.addAttribute("card", dbtCrdService.getCardToView(cardNumber));
+        model.addAttribute("username", username);
        return "cards/editCard";
     }
 
@@ -129,6 +133,7 @@ public class MainController {
             return "redirect:/";
 
       model.addAttribute("loans", loanService.getLoansToView(currentUser.getId()));
+      model.addAttribute("username", username);
        return "loans/loans";
     }
 
@@ -139,6 +144,7 @@ public class MainController {
             return "redirect:/";
 
         model.addAttribute("newLoan", new LoanDTO());
+        model.addAttribute("username", username);
         return "loans/newLoan";
     }
 
@@ -166,6 +172,7 @@ public class MainController {
             return "redirect:/";
 
         model.addAttribute("loan", loanService.getLoanToView(loanNumber));
+        model.addAttribute("username", username);
         return "loans/editLoan";
     }
 
@@ -206,5 +213,9 @@ public class MainController {
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
